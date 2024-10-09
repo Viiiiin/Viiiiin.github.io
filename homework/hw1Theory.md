@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Homework1Theory
-permalink: /homework1.html
+permalink: /hwTheory1.html
 ---
 # Q.1
 ### Population
