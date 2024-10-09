@@ -1,195 +1,280 @@
 ---
 layout: default
-title: Homework1
+title: Homework1Theory
 permalink: /homework1.html
 ---
-# Q.1
-### Population
-In statistics, a population refers to the total number of statistical units that share at least one common characteristic of interest in a statistical analysis.
 
-For example, a population could be defined as all residents of a particular city who are employed. Since it is usually impractical to gather data from every single individual in the population, a sample is often selected, allowing for the analysis of a subset that represents the larger group.
+# Link to Theory
+To see the answer of the question of the homework 1 [click on this link](hw1Theory.md)
+
+
+# The Final Result 
+![hw1](../assets/img/hw1.png)
+
+# Overview
+Doing the program I have divided the code in different function, here i am going to present only the essential part of the program (Not how I created the rectangle the design), the rest can be seen at the github repository [Github Repo] (https://github.com/Viiiiin/Statistics/tree/main/homework_1/homework_1)
+
+# Explanation of C# Code: Paint_Attack Method
+
+## Overview
+
+This part of the C# code contains two methods, `Paint_Attack` and `Attack`, that are likely part of a graphical application that visualizes an attack simulation. The `Paint_Attack` method is responsible for drawing the results of the attack simulation on a graphical interface, while the `Attack` method determines whether a single attack attempt is successful based on a probability threshold.
+
+```csharp
+   if (this.attacker == 0 || this.server == 0)
+   {
+       return;
+   }
+   ```
+## Method: `Paint_Attack`
+```csharp
+private void Paint_Attack(object sender, PaintEventArgs e)
+{
+    if (this.attacker ==0 || this.server == 0)
+        {
+            return;
+        }
+    Graphics g = e.Graphics;
+    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+    int count;
+    Color color;
+    PointF current_point, next_point;
+    Pen pen;
+    for (int i = 0; i < this.attacker; i++)
+    {
+        count = 0;
+        color = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
+        current_point = new PointF(START_X, this.height+START_Y);
+        next_point = new PointF(START_X, this.height+START_Y);
+        pen = new Pen(color, 3);
+
+        for (int j = 0; j < this.server; j++)
+        {
+            if (Attack())
+            {
+                next_point = new PointF(current_point.X, current_point.Y - y_space);
+                g.DrawLine(pen, current_point, next_point);
+                current_point = next_point;
+                count++;
+            }
+
+            next_point = new PointF(current_point.X + x_space, current_point.Y);
+            g.DrawLine(pen, current_point, next_point);
+            current_point = next_point;
+        }
+
+        this.result[count] += 1;
+    }
+}
+  ```
+### Logic Flow
+
+1. **Early Exit**:
+   ```csharp
+   if (this.attacker == 0 || this.server == 0)
+   {
+       return;
+   }
+   ```
+   The method first checks if the number of attackers or servers is zero. If either is zero, the method returns early without performing any drawing.
+
+2. **Graphics Setup**:
+   ```csharp
+   Graphics g = e.Graphics;
+   g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+   ```
+   The graphics object is obtained from the `PaintEventArgs`. Anti-aliasing is enabled to ensure smooth lines are drawn.
+
+3. **Loop through Attackers**:
+   ```csharp
+   for (int i = 0; i < this.attacker; i++)
+   ```
+   The outer loop iterates over the number of attackers.
+
+4. **Random Color Generation**:
+   ```csharp
+   color = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
+   ```
+   A random color is generated for each attacker using RGB values, which are randomly selected between 0 and 255.
+
+5. **Drawing Logic**:
+   - The `current_point` is initialized at a starting position:
+     ```csharp
+     current_point = new PointF(START_X, this.height + START_Y);
+     ```
+   - The inner loop iterates through the number of servers:
+     ```csharp
+     for (int j = 0; j < this.server; j++)
+     ```
+     - For each server, the `Attack` method is called:
+       ```csharp
+       if (Attack())
+       ```
+       If the attack is successful, a line is drawn upwards:
+       ```csharp
+       next_point = new PointF(current_point.X, current_point.Y - y_space);
+       g.DrawLine(pen, current_point, next_point);
+       current_point = next_point;
+       count++;
+       ```
+     - Regardless of the attack result, a horizontal line is drawn to represent the server processing:
+       ```csharp
+       next_point = new PointF(current_point.X + x_space, current_point.Y);
+       g.DrawLine(pen, current_point, next_point);
+       current_point = next_point;
+       ```
+   - The `result` array is updated based on the number of successful attacks:
+     ```csharp
+     this.result[count] += 1;
+     ```
+
+## Method: `Attack`
+
+### Logic
+
+The `Attack` method determines whether an attack is successful based on a random number:
+
+```csharp
+    private Boolean Attack()
+    {
+        float randomNumber = (float)random.NextDouble();
+        return this.probability >= randomNumber;
+    }
+```
+
+1. A random float value between 0.0 and 1.0 is generated.
+2. The method checks if this random number is less than or equal to `this.probability`.
+3. If so, the attack is considered successful, and the method returns `true`; otherwise, it returns `false`
+
+
+## Method: `average`
+
+### Parameters
+
+- **int i**: The current index in the `result` array being processed.
+- **float cumulativeAverage**: The cumulative average calculated up to the current index.
+- **int numberOfAttempts**: The count of successful attempts encountered so far.
+
+### Logic Flow
+
+1. **Base Case**:
+   ```csharp
+   if (i >= result.Length)
+   {
+       return numberOfAttempts > 0 ? cumulativeAverage : 0;
+   }
+   ```
+   The method checks if the current index `i` has reached or exceeded the length of the `result` array. If so, it returns the cumulative average if there were any attempts; otherwise, it returns `0`.
+
+2. **Processing the Current Element**:
+   ```csharp
+   if (result[i] > 0)
+   {
+       numberOfAttempts++;
+       cumulativeAverage += (result[i] - cumulativeAverage) / numberOfAttempts;
+   }
+   ```
+   If the current element in the `result` array at index `i` is greater than `0`, the following actions are performed:
+   - The `numberOfAttempts` is incremented by `1` to account for the successful attempt.
+   - The cumulative average is updated 
+   This formula adjusts the average based on the new value and the updated count of attempts.
+
+3. **Recursive Call**:
+   ```csharp
+   return average(i + 1, cumulativeAverage, numberOfAttempts);
+   ```
+   The method then makes a recursive call to itself, incrementing the index `i` by `1` to process the next element in the `result` array.
+
+## Method: `Paint_Result`
+   ```csharp
+        private void Paint_Result(object sender, PaintEventArgs e)
+        {
+            if (this.attacker == 0 || this.server == 0)
+            {
+                return;
+            }
+            float space = ((float)this.width / 2) / this.attacker;
+            Graphics g = e.Graphics;
+            Pen pen = new Pen(Color.Black, 1);
+            PointF current_point, next_point;
+            current_point = new PointF(START_X+ this.width, this.height + START_Y);
+            Font font = new Font("Arial", 12);
+
+            for (int i = 0; i < this.result.Length; i++)
+            {
+
+                if (this.result[i] > 0)
+                {
+                    next_point = new PointF(current_point.X + (this.result[i] * space), current_point.Y );
+                    RectangleF rect = new RectangleF(current_point.X, current_point.Y, (this.result[i] * space),this.y_space);
+                    g.FillRectangle(Brushes.Blue, rect); 
+
+                    g.DrawRectangle(pen, Rectangle.Round(rect)); 
+                }
+                current_point.Y -= this.y_space;
+            }
+            float avg = average(0,0,0);
+            g.DrawString($" The average is: {avg}", font, Brushes.Black, 700, 10);
+
+        }
+
+      ```
+### Logic Flow
+
+1. **Early Exit**:
+   ```csharp
+   if (this.attacker == 0 || this.server == 0)
+   {
+       return;
+   }
+   ```
+   The method first checks if the number of attackers or servers is zero. If either is zero, the method returns early without performing any drawing.
+
+2. **Space Calculation**:
+   ```csharp
+   float space = ((float)this.width / 2) / this.attacker;
+   ```
+   The variable `space` is calculated to determine the width of the rectangles to be drawn based on the total available width divided by the number of attackers.
+
+3. **Graphics Setup**:
+   ```csharp
+   Graphics g = e.Graphics;
+   Pen pen = new Pen(Color.Black, 1);
+   PointF current_point, next_point;
+   current_point = new PointF(START_X + this.width, this.height + START_Y);
+   Font font = new Font("Arial", 12);
+   ```
+   The graphics object is obtained from the `PaintEventArgs`, and a pen is created for drawing outlines of rectangles. The starting point for drawing is initialized, and a font is defined for displaying the average text.
+
+4. **Loop through Result Array**:
+   ```csharp
+   for (int i = 0; i < this.result.Length; i++)
+   ```
+   The loop iterates over the `result` array, which contains the counts of successful attack attempts.
+
+5. **Drawing Rectangles**:
+   ```csharp
+   if (this.result[i] > 0)
+   {
+       next_point = new PointF(current_point.X + (this.result[i] * space), current_point.Y );
+       RectangleF rect = new RectangleF(current_point.X, current_point.Y, (this.result[i] * space), this.y_space);
+       g.FillRectangle(Brushes.Blue, rect); 
+       g.DrawRectangle(pen, Rectangle.Round(rect)); 
+   }
+   current_point.Y -= this.y_space;
+   ```
+   For each successful attack count in the `result` array, the method:
+   - Calculates the `next_point` based on the current count multiplied by `space`.
+   - Creates a rectangle based on the current position and size determined by the count and a predefined height (`y_space`).
+   - Fills the rectangle with a blue color and draws its outline using the black pen.
+   - Updates the `current_point`'s Y-coordinate to move down for the next rectangle.
+
+6. **Calculating and Displaying Average**:
+   ```csharp
+   float avg = average(0, 0, 0);
+   g.DrawString($" The average is: {avg}", font, Brushes.Black, 700, 10);
+   ```
+   After drawing all rectangles, the method calls the previously defined `average` method to calculate the average of successful attempts. It then draws a string displaying the average at a specified position on the graphics surface.
 
-There are different sampling methods to choose from when selecting a sample. For smaller populations, such as all employees in a specific company, a full population survey could be conducted, which is referred to as a census.
 
-A key principle for all populations is the necessity of clearly defined criteria regarding who is included. For instance, when defining a group like “all employed residents of a city,” one would need to specify whether only full-time employees are included or if part-time and self-employed individuals also count. Similarly, it's important to determine if temporary residents are considered part of the population or only those with permanent residency.
-
-
-### Statistical units
-The basic assumption in statistics is that the analysis is conducted on sets of elements known as "statistical units," and that these units can be described through attributes, which are referred to as "characteristics."
-
-Statistical units can represent any kind of objects or events, whether real or virtual, such as natural phenomena (e.g., rainfall), the outcomes of measurement programs, dice rolls, individuals (such as Italian citizens), groups of people (e.g., households), or social and economic phenomena (like marriages, employment relationships, or bank transactions), among many others.
-
-The "characteristics" of these units will vary depending on what is being analyzed. For individuals, relevant characteristics might include gender, income, or occupation. For "bank transactions," on the other hand, meaningful characteristics could be the type of transaction, the bank involved, the amount of money, the currency, or the maturity date of the transaction.
-
-### Distribution
-A statistical distribution, or probability distribution, describes how values are distributed for a field. In other words, the statistical distribution shows which values are common and uncommon.
-
-There are many kinds of statistical distributions, including the bell-shaped normal distribution. We use a statistical distribution to determine how likely a particular value is. For example, if we have a chi-square value, we can use the chi-square distribution to determine how likely this chi-square value is.
-
-
-### Frequency
-
-In statistics, the term "frequency" refers to the number of times a particular event or outcome occurs within a data set. It can be expressed in various forms: absolute, relative, and percentage.
-
-1. **Absolute Frequency**: The absolute frequency, \\(f_i\\), of a statistical unit is the actual count of occurrences for a given characteristic in the dataset. For example, if 10 out of 100 people surveyed own a car, the absolute frequency of car owners is 10.
-
-2. **Relative Frequency**: The relative frequency, \\(f'_i\\), is the ratio of the absolute frequency to the total number of observations, \\(N\\), in the dataset. It is defined by the formula:
-   
-   $$
-   f'_i = \frac{f_i}{N}
-   $$
-   
-   Using the previous example, if 10 out of 100 people own a car, the relative frequency is:
-   
-   $$
-   f'_i = \frac{10}{100} = 0.1
-   $$
-
-3. **Percentage Frequency**: The percentage frequency, \\(f''_i\\), expresses the relative frequency as a percentage. It is calculated by multiplying the relative frequency by 100:
-
-   $$
-   f''_i = f'_i \times 100
-   $$
-   
-   For the car ownership example, the percentage frequency is:
-
-   $$
-   f''_i = 0.1 \times 100 = 10\%
-   $$
-
-In summary, frequency analysis helps in understanding the distribution of characteristics across the dataset, providing insights into how often certain outcomes occur relative to the whole population.
-
-
-# Q.2
-### 
-
-In statistics, the **mean** is a measure of central tendency that identifies the value around which all other data points tend to cluster. Mathematically, the mean minimizes the sum of the squared differences between itself and each data point. This is because it balances the distribution of data, ensuring that the sum of the deviations to the left of the mean equals the sum of the deviations to the right.
-
-The idea of the mean can be visualized as finding a point that balances the data set. If we imagine the data points on a number line, the arithmetic mean is the point where the total "weight" of the data is balanced, making it a center of mass.
-
-#### Arithmetic Mean
-
-The **arithmetic mean** is the most commonly used mean and is calculated by summing all values and dividing by the number of values:
-
-$$
-\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
-$$
-
-Where:
-- \\(\bar{x}\\) is the arithmetic mean.
-- \\(x_i\\) represents each data point.
-- \\(n\\) is the total number of data points.
-
-#### Weighted Mean
-
-The **weighted mean** takes into account the relative importance or frequency of each data point. If different values have different weights \\(w_i\\), the weighted mean is calculated as:
-
-$$
-\bar{x}_w = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i}
-$$
-
-This formula emphasizes certain data points more than others, based on their assigned weights.
-
-#### Cumulative Mean
-
-The **cumulative mean** is a running average that incorporates each new data point progressively. For each new value, the cumulative mean is updated as:
-
-$$
-\bar{x}_k = \frac{1}{k} \sum_{i=1}^{k} x_i
-$$
-
-or recursively:
-
-$$
-\bar{x}_k = \bar{x}_{k-1} + \frac{x_k - \bar{x}_{k-1}}{k}
-$$
-
-Where:
-- \\(\bar{x}_k\\) is the mean after the \\(k\\)-th data point is added.
-- \\(x_k\\) is the \\(k\\)-th data point.
-- \\(k\\) is the number of data points considered so far.
-
-### Mathematical Interpretation
-
-In a symmetrical distribution, the mean has an important geometric property: it equalizes the total distances on both sides. In other words, the sum of the deviations from the mean on the left side is equal to the sum of the deviations on the right side. This makes the mean a "balance point" of the data set.
-
-For example, if we take the set \\(2, 4, 6\\), the arithmetic mean is \\(4\\). The deviation of 2 from the mean is -2, while the deviation of 6 is +2. The sum of these deviations is zero, confirming the balancing nature of the mean.
-
-### Derivation
-The derivative is primarily used when there is some varying quantity, and the rate of change is not constant. The derivative is used to measure the sensitivity of one variable (dependent variable) with respect to another variable (independent variable).
-
-### Floating-point
-Floating-point arithmetic is considered an esoteric subject by many people. This is rather surprising because floating-point is ubiquitous in computer systems. Almost every language has a floating-point datatype; computers from PCs to supercomputers have floating-point accelerators.
-#### Floating-Point Representation of Real Numbers
-
-The most common representation of real numbers in computers is the **floating-point representation**, which uses a base (typically 2 or 10) and a precision \( p \). For example, the number \( 0.1 \) can be represented as 
-
-\[
-1.00 \times 10^{-1}
-\]
-
-with base 10 and precision 3, while in binary with base 2 and precision 24, \( 0.1 \) cannot be represented exactly and is approximated by an infinite binary fraction.
-
-A floating-point number is generally expressed as 
-
-\[
-\pm d_0 . d_1 d_2 \ldots d_{p-1} \times \beta^e
-\]
-
-where \( d_0 . d_1 d_2 \ldots d_{p-1} \) is the **significand** with \( p \) digits, and \( e \) is the exponent. The range between the maximum and minimum exponents (\( e_{max} \) and \( e_{min} \)) determines the range of representable numbers. 
-
-Some real numbers cannot be exactly represented for two reasons: either they have an infinite binary representation (e.g., \( 0.1 \) in base 2) or they are out of the range supported by the exponents.
-
-Floating-point representation can be **normalized** (e.g., \( 1.00 \times 10^{-1} \) is normalized, while \( 0.01 \times 10^{1} \) is not). Normalization makes the representation unique but introduces the issue of being unable to represent zero exactly without additional mechanisms.
-
-# Rounding errors
-Squeezing infinitely many real numbers into a finite number of bits requires an approximate representation. Although there are infinitely many integers, in most programs the result of integer computations can be stored in 32 bits. In contrast, given any fixed number of bits, most calculations with real numbers will produce quantities that cannot be exactly represented using that many bits. Therefore the result of a floating-point calculation must often be rounded in order to fit back into its finite representation. This rounding error is the characteristic feature of floating-point computation
-
-# Catastrophic Cancellation
-
-**Catastrophic cancellation** occurs in numerical computations when significant digits are lost due to the subtraction of nearly equal numbers. This loss of precision can lead to results that have large relative errors, undermining the accuracy of computations.
-
-## Example of Catastrophic Cancellation
-
-Consider two numbers \( a \) and \( b \) that are very close in value, such as:
-
-\[
-a = 1.0000001
-\]
-\[
-b = 1.0000000
-\]
-
-When we compute \( a - b \), the result is:
-
-\[
-c = a - b = 0.0000001
-\]
-
-However, if these numbers are represented in a computer with limited precision, they might be approximated as:
-
-\[
-a \approx 1.0
-\]
-\[
-b \approx 1.0
-\]
-
-Then, the subtraction yields:
-
-\[
-c \approx 0.0
-\]
-
-This shows that the actual result, which should be \( 0.0000001 \), is lost, leading to significant relative error.
-
-
-# Numerical Solution
-
-In the context of Donald Knuth's work, "numerical solution" refers to using algorithms to find approximate answers to mathematical problems that can't be solved exactly. This often involves numerical methods for solving equations, optimizing functions, or approximating values.
-
-Knuth emphasizes the importance of designing efficient algorithms, as well as understanding and managing errors that can arise in numerical computations. Since approximations can introduce inaccuracies, error analysis is crucial to assess the reliability of results.
-
-Common techniques include iterative methods, where initial guesses are refined through repeated calculations until a satisfactory answer is achieved. Stability (ensuring small input changes don’t drastically affect output) and convergence (the approximation getting closer to the true solution with more iterations) are key considerations.
-
-Overall, Knuth’s insights into numerical solutions have greatly impacted fields like engineering, physics, and computer science, where complex problems often require computational approaches for practical solutions.
