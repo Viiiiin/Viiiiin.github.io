@@ -20,7 +20,7 @@ author: Vincenzo Capriotti
 ###############################################
 
 navbar-links:
-  About Me: "Statistics"
+  Statistics: "statistics"
   Resources:
     - My github: "https://github.com/Viiiiin"
 
