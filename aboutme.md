@@ -8,4 +8,4 @@ My statistics homework
 
 ### HomeWork 1
 
-[Follow this page](homework/homework1.html)
+[Follow this page](homework/homework1.md)
