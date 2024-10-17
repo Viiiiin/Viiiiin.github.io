@@ -1,3 +1,4 @@
+---
 layout: default
 title: Homework2
 permalink: /homework2
