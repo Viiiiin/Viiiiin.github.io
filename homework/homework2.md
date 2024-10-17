@@ -74,7 +74,7 @@ private void Paint_Attack(object sender, PaintEventArgs e)
         this.result[count + this.server] += 1;
     }
 }
-
+```
 #### Relative Frequency `Paint_Attack`
 Each attacker has its own trajectory and a relative score, which is updated at each step based on the success or failure of each attack attempt.
 
@@ -117,3 +117,60 @@ for (int j = 0; j <this.server; j++)
      }
  }
  ```
+ 
+# Personal Notes on the Behavior of Mean and Variance with Respect to Time
+
+## 1. Observations in the Four Different Cases
+
+### A. Absolute Frequency (AF)
+- **Mean**:
+  - The mean of absolute frequencies tends to increase with the number of trials. Initially, it can show a lot of variability due to the random nature of successes and failures.
+  - The mean can be misleading in small samples, as it does not account for the total number of trials.
+
+- **Variance**:
+  - The variance of AF may be high, especially in small sample sizes, as the number of successes can fluctuate significantly.
+  - As the number of trials increases, the variance generally decreases, but it can still reflect significant fluctuations due to individual trial outcomes.
+
+### B. Relative Frequency (RF)
+- **Mean**:
+  - The mean of relative frequencies stabilizes as the number of trials increases. It converges toward the true probability of success for the process being evaluated.
+  - RF provides a more accurate representation of performance as it reflects the average success rate over many trials.
+
+- **Variance**:
+  - The variance of RF decreases over time, as the RF tends to smooth out random fluctuations and converge towards a stable value.
+  - It can still exhibit variability in early trials, but this decreases as the number of observations grows.
+
+### C. Bernoulli Process
+- **Mean**:
+  - In a Bernoulli process, the mean of the successes converges towards the expected probability of success (p) as the number of trials increases.
+  - The mean is calculated directly from the proportion of successes over the total number of trials, making it reliable in large samples.
+
+- **Variance**:
+  - The variance in a Bernoulli process can be calculated using the formula \( p(1-p) \). As the number of trials increases, the observed variance tends to approximate this theoretical value.
+  - The variance stabilizes as more data is collected, reinforcing the reliability of the mean.
+
+### D. Random Walk
+- **Mean**:
+  - The mean of a random walk remains centered around zero in symmetric random walks, but it can drift if there is a bias towards positive or negative steps.
+  - Over time, the mean tends to show the overall trend, but it can be affected by the random nature of individual steps.
+
+- **Variance**:
+  - The variance of a random walk increases with time, as the potential spread of the walk's position increases. This is often modeled as growing linearly with the number of steps.
+  - The variance indicates how far from the starting point the walk might be, illustrating increased uncertainty over time.
+
+## 2. Differences Between Absolute Number of Successes and Relative Frequencies
+
+- **Mean**:
+  - **AF Mean**: Reflects the raw count of successes. It can vary significantly based on the number of trials and does not provide a normalized view.
+  - **RF Mean**: Provides a more meaningful average of success rates, normalizing against total attempts, leading to convergence towards the true probability of success.
+
+- **Variance**:
+  - **AF Variance**: Can be high and fluctuate significantly, particularly in small sample sizes, leading to unreliable interpretations of performance.
+  - **RF Variance**: Generally lower and stabilizes as the number of trials increases, offering a clearer picture of the underlying process.
+
+## Conclusion
+
+In summary, the behavior of mean and variance concerning time differs significantly across absolute frequency, relative frequency, Bernoulli processes, and random walks. Absolute frequency can be volatile and less informative, while relative frequency provides stability and better reflects the underlying success probabilities. Understanding these differences is crucial for accurately interpreting data in stochastic processes and making informed decisions based on the observed outcomes.
+
+ 
+ 
