@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Homework2
-permalink: /homework2
+title: Homework2Theory
+permalink: /hwTheory2.html
 ---
 
 
