@@ -84,5 +84,3 @@ for (int i = 0; i < this.attacker; i++)
   - Updates the graphical path based on the outcome of the `Attack` function.
   - Tracks the count of successful attacks.
 
-### Summary
-The `BerLambda` class uses probabilistic decision-making and graphical representation to simulate attack behavior over a series of steps. The `Attack` function is the core decision point, while the `Paint_Attack` method illustrates the results, making the simulation easy to interpret visually.

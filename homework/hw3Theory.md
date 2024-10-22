@@ -7,6 +7,7 @@ permalink: /hwTheory3.html
 
 ## Statement
 The **Median** is defined as the value that minimizes the sum of absolute deviations from all points in a given dataset. Formally, given a set of observations \( x_1, x_2, \ldots, x_n \), the median \( m \) is the solution to the following minimization problem:
+
 $$
 \min_c \sum_{i=1}^n |x_i - c|
 $$
@@ -94,6 +95,3 @@ The concept of "location" statistics can be generalized to create an infinite nu
 
 ## Infinite Possibilities
 By selecting different norms, weights, or loss functions, an infinite number of central tendency measures can be derived. Each definition provides a unique perspective on the "center" of a distribution, tailored to the specific characteristics or outliers present in the data.
-
-## Conclusion
-The median's role as the minimizer of absolute deviations highlights the varied approaches to understanding the center of a dataset. From means to more complex M-estimators, the concept of central tendency is flexible, allowing for adaptation to different data characteristics and analytical needs.
