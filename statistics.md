@@ -13,3 +13,7 @@ My statistics homework
 ### HomeWork 2
 
 [Follow this page](homework/homework2.md)
+
+### HomeWork 3
+
+[Follow this page](homework/homework3.md)
