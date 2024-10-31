@@ -101,22 +101,38 @@ for (int j = 0; j <this.server; j++)
 
 ### Mean and Deviance
 ```csharp
- public void CalculateMeanAndDeviation(float[] result, out float mean, out float dev)
- {
-     float delta;
-     int n = 1;
-     mean = 0;
-     dev = 0;
+        public void CalculateMeanAndDeviation(int[] result, out float mean, out float var)
+        {
+            float delta, dev;
+            int n = 0;
+            mean = 0;
+            dev = 0;
+            int score,offset = 0;
+            if (this.server +1  < result.Length)
+            {
+                offset = this.server;
+            }
 
-     for (int i = 0; i < result.Length; i++)
-     {
-             delta = result[i] - mean;
-             mean += delta / n;
-             dev += (result[i] - mean) * delta;
-             n++;
-         
-     }
- }
+            for (int index = 0; index < result.Length; index++)
+            {
+                int count = result[index]; // Numero di persone con quello score
+                if (count > 0) // Solo per score presenti
+                {
+                    score = index - offset; // Calcola lo score reale, considerando l'offset
+
+                    for (int i = 0; i < count; i++) // Per ogni persona con quello score
+                    {
+                        n++;
+                        delta = score - mean;
+                        mean += delta / n; // Aggiorna la media
+                        dev += delta * (score - mean); // Aggiorna la somma dei quadrati delle deviazioni
+                    }
+                }
+            }
+            var = dev / n;
+            
+        }
+
  ```
  
 # Personal Notes on the Behavior of Mean and Variance with Respect to Time
