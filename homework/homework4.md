@@ -4,7 +4,7 @@ title: Homework4
 permalink: /homework4
 ---
 # Link to Theory
-To see the answer to the question of homework 2 [click on this link](hw4Theory.md)
+To see the answer to the question of homework 4 [click on this link](hw4Theory.md)
 
 
 ![hw4](../assets/img/hw4.png)
