@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Homework5
-permalink: /homework5
+title: Homework5Theory
+permalink: /hwTheory5.html
 ---
 # Cauchy-Schwarz Inequality and Statistical Independence Notes
 
