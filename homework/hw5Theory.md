@@ -112,3 +112,59 @@ Consider $X \sim U[-1,1]$ and $Y = X^2$:
 - But clearly dependent: $Y$ is a function of $X$
 - Shows uncorrelation $\neq$ independence
 
+# Regression Coefficients
+
+## Deriving the Slope ($b$) and Intercept ($a$)
+
+To derive the coefficients for the **linear regression line** $ Y = a + bX $ using the least squares method, we aim to minimize the sum of squared residuals, which are the differences between observed values $ Y_i $ and predicted values $ a + bX_i $.
+
+### Slope $b$
+
+The slope $b$ is calculated by:
+$$
+b = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}
+$$
+where:
+- $ \bar{X} $ and $ \bar{Y} $ are the means of $ X $ and $ Y $, respectively.
+- $ (X_i, Y_i) $ represent individual data points.
+
+This slope $ b $ is the ratio of the **covariance of $ X $ and $ Y $** to the **variance of $ X $**. It represents the amount $ Y $ changes for each unit change in $ X $.
+
+### Intercept $a$
+
+With $ b $ calculated, we find $ a $ by:
+$$
+a = \bar{Y} - b\bar{X}
+$$
+This ensures the line passes through the **point of means** $ (\bar{X}, \bar{Y}) $.
+
+## Relationship with $ R^2 $
+
+The **coefficient of determination** $ R^2 $ measures how well the independent variable $ X $ explains the variance in the dependent variable $ Y $. It is calculated by:
+$$
+R^2 = \frac{\text{Explained Sum of Squares (ESS)}}{\text{Total Sum of Squares (TSS)}}
+$$
+or equivalently,
+$$
+R^2 = 1 - \frac{\text{Residual Sum of Squares (RSS)}}{\text{Total Sum of Squares (TSS)}}
+$$
+where:
+- **TSS (Total Sum of Squares)** is $ \sum_{i=1}^n (Y_i - \bar{Y})^2 $,
+- **RSS (Residual Sum of Squares)** is $ \sum_{i=1}^n (Y_i - (a + bX_i))^2 $,
+- **ESS (Explained Sum of Squares)** is $ \sum_{i=1}^n ((a + bX_i) - \bar{Y})^2 $.
+
+### Connection between $ R^2 $ and the Slope $ b $
+
+The **correlation coefficient $ r $** is:
+$$
+r = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum_{i=1}^n (X_i - \bar{X})^2 \sum_{i=1}^n (Y_i - \bar{Y})^2}}
+$$
+and $ R^2 $ is the square of $ r $:
+$$
+R^2 = r^2
+$$
+This indicates the strength of the linear relationship, where:
+- $ R^2 = 1 $: Perfect linear relationship.
+- $ R^2 = 0 $: No linear relationship.
+
+If $ R^2 $ is close to 1, most of the variance in $ Y $ is explained by $ X $; if close to 0, very little of $ Y $'s variance is explained by $ X $.
