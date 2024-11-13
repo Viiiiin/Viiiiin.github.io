@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Homework6Theory
-permalink: /hwTheory6
+permalink: /hwTheory6.html
 ---
 # Fundamental Theorem of Calculus and Its Relationship with Density Functions and Cumulative Distribution Functions (CDFs)
 
