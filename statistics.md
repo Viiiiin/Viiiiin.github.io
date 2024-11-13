@@ -25,3 +25,7 @@ My statistics homework
 ### HomeWork 5
 
 [Follow this page](homework/homework5.md)
+
+### HomeWork 6
+
+[Follow this page](homework/homework6.md)
