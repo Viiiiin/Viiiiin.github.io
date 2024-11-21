@@ -6,6 +6,7 @@ permalink: /homework7
 # Central Limit Theorem, (Code Logic)
 
 ![hw](../assets/img/hw7.png)
+[GitHub](https://github.com/Viiiiin/Statistics/blob/main/homework_2/homework_1/MThAndEmp.cs)
 ## 1. Setup 
 
 Create a discrete parent distribution with probabilities for each value. 
@@ -62,6 +63,7 @@ $$
 
 
 ![hwopt](../assets/img/hw7OPT.png)
+[GitHub](https://github.com/Viiiiin/Statistics/blob/main/homework_2/homework_1/Crypto.cs)
 ## Observations and Analysis
 
 ### 1. Shape of the Distributions:
