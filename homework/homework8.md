@@ -122,8 +122,7 @@ Analyzing the frequency distribution of letters in ciphertext revealed patterns 
 The histogram provided a visual representation of these frequencies, making it easier to identify trends and anomalies.
 
 Calculating Shannon entropy demonstrated how randomness in ciphertext increases with more secure encryption schemes. Higher entropy indicates a more uniform distribution of characters, reducing the likelihood of pattern-based attacks.
-For the given RSA parameters (𝑒,𝑃), the entropy suggested a moderate level of randomness, showing that choosing small 
-𝑃 values compromises security.
+For the given RSA parameters (𝑒,𝑃), the entropy suggested a moderate level of randomness, showing that choosing small 𝑃 values compromises security.
 
 Importance of these skills in Cybersecurity
 1. Cryptanalysis: Statistical analysis is foundational for breaking weak encryption, aiding in the development of more secure systems.
