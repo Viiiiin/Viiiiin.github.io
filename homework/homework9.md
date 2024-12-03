@@ -6,6 +6,9 @@ permalink: /homework9
 To see the answer to the question of homework 9 [click on this link](hw9Theory.md)
 
 ![hw](../assets/img/hw9.png)
+[GitHub](https://github.com/Viiiiin/Statistics/blob/main/homework_2/homework_1/Variance.cs)
+
+
 # Documentation: `VarThAndEffective` Class
 
 The `VarThAndEffective` class is designed to simulate and analyze theoretical and empirical distributions, focusing on means and variances. It includes methods for generating probabilities, creating samples, and calculating statistical properties.
