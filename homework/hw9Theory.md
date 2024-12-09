@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Homework8Theory
-permalink: /hwTheory8.html
+title: Homework9Theory
+permalink: /hwTheory9.html
 ---
 
 
