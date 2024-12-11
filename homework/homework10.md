@@ -25,18 +25,18 @@ The method `GenerateXValues` divides the interval `[lowerBound, upperBound]` int
 ### 3. **Riemann Integral Calculation**
 The Riemann integral is computed using the **left Riemann sum**:
 
-$$\[
+$$
 \text{Integral}_{\text{Riemann}} = \sum_{i=0}^{n-1} f(x_i) \cdot \Delta x
-\]$$
+$$
 
 Here, \(\Delta x\) is the width of each subinterval.
 
 ### 4. **Lebesgue Integral Calculation**
 The Lebesgue integral is approximated by grouping function values (\(y=f(x)\)) into buckets and associating a measure (sum of widths \(\Delta x\)) to each level. The formula used is:
 
-$$\[
+$$
 \text{Integral}_{\text{Lebesgue}} = \sum_{\text{buckets}} (\text{level} \times \text{measure})
-\]$$
+$$
 
 This is a simplified approach to illustrate the concept of **measure theory**, focusing on the codomain \(y\) rather than the domain \(x\).
 
@@ -179,32 +179,5 @@ For each certificate, extract the following:
 4. **Industry Trends**:
    - Government and finance sectors prefer long-lived certificates.
    - Educational institutions and tech industries rely more on automated short-lived certificates.
-
----
-
-## 6. Tools and Methods
-
-### **Data Collection**
-- Use APIs like `crt.sh`, `x509` libraries, or custom scrapers for CT logs.
-
-### **Statistical Analysis**
-- Python libraries: `pandas`, `numpy`, `matplotlib`, `seaborn`.
-- Compute metrics (e.g., mean, median, variance) and generate plots.
-
-### **Visualization**
-- Histograms for validity durations.
-- Pie charts for issuer distribution.
-- Heatmaps for geographic distributions.
-
----
-
-## 7. Recommendations
-
-1. **Encourage ECC Adoption**:
-   - Promote faster and more secure key exchange algorithms like ECC-256.
-2. **Reduce Long-Lived Certificates**:
-   - Transition to shorter-lived certificates for better security and automation.
-3. **Address Regional Risks**:
-   - Investigate and mitigate high concentrations of self-signed or weakly signed certificates in specific regions.
 
 ---
