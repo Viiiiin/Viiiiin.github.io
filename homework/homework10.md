@@ -5,7 +5,7 @@ permalink: /homework10
 ---
 To see the answer to the question of homework 10 [click on this link](hw10Theory.md)
 ![hw](../assets/img/hw10.png)
-[GitHub](https://github.com/Viiiiin/Statistics/blob/main/homework_2/homework_1/Variance.cs)
+[GitHub](https://github.com/Viiiiin/Statistics/blob/main/homework_2/homework_1/hw10.cs)
 # Numerical Integration with Riemann and Lebesgue Methods
 
 This code implements a **numerical integration** framework in C# that calculates the integral of a function over a specified interval using two different methods:
