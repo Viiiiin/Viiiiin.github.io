@@ -132,34 +132,16 @@ For each certificate, extract the following:
 ## 4. Example Statistical Results
 
 ### (a) Certificate Issuer Distribution
-| Issuer                | Count    | Proportion (%) |
-|-----------------------|----------|----------------|
-| Let's Encrypt         | 450,000  | 60.2%          |
-| DigiCert              | 200,000  | 26.8%          |
-| GlobalSign            | 50,000   | 6.7%           |
-| Others                | 47,000   | 6.3%           |
+![hw](../assets/img/certificate_issuer_distribution.png)
 
 ### (b) Certificate Validity Periods
-- **Mean Validity**: 398 days.
-- **Median Validity**: 365 days.
-- **Short-Lived Certificates (<90 days)**: 58%.
-- **Long-Lived Certificates (>1 year)**: 10%.
+![hw](../assets/img/certificate_validity_periods.png)
 
 ### (c) Key Length Distribution
-| Key Length   | Count    | Proportion (%) |
-|--------------|----------|----------------|
-| RSA-2048     | 700,000  | 93.3%          |
-| RSA-4096     | 35,000   | 4.7%           |
-| ECC-256      | 15,000   | 2.0%           |
+![hw](../assets/img/key_length_distribution.png)
 
 ### (d) Geographic Distribution
-| Country      | Certificates Issued | Proportion (%) |
-|--------------|----------------------|----------------|
-| US           | 400,000             | 53.4%          |
-| Germany      | 100,000             | 13.3%          |
-| China        | 70,000              | 9.3%           |
-| Others       | 180,000             | 24.0%          |
-
+![hw](../assets/img/geographic_distribution.png)
 ---
 
 ## 5. Potential Security Insights
