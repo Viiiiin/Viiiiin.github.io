@@ -71,3 +71,4 @@ For a function \(f(x) = x^2\) over \([0, 1]\) with 100 intervals:
 
 ### Research
 [HERE THE FILE FOR THE RESARCH OF THE SSL](testo.txt)
+[HERE THE SOURCE CODE](https://github.com/Viiiiin/Statistics/blob/main/ConsoleApp1/ConsoleApp1/Program.cs)
