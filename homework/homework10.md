@@ -67,3 +67,7 @@ For a function \(f(x) = x^2\) over \([0, 1]\) with 100 intervals:
 
 
 
+# SSL OPT Homework
+
+### Research
+[HERE THE FILE FOR THE RESARCH OF THE SSL](testo.txt)
