@@ -14,7 +14,7 @@ subtitle: My homework for statistics
     <h2>Featured Posts</h2>
     <ul class="posts-list list-unstyled" role="list">
       {% assign posts = paginator.posts | default: site.posts %}
-      {% for post in posts limit: 3 %}
+      {% for post in posts limit: 11 %}
       <li class="post-preview">
         <article>
 
@@ -50,13 +50,3 @@ subtitle: My homework for statistics
     </ul>
   </section>
 
-  <section class="about">
-    <h2>About Us</h2>
-    <p>We are passionate about sharing knowledge and stories that matter. Explore a range of topics and connect with our community.</p>
-  </section>
-
-  <section class="contact">
-    <h2>Contact Us</h2>
-    <p>Have questions or feedback? <a href="/contact">Reach out to us</a>, and we’d love to hear from you!</p>
-  </section>
-</div>
