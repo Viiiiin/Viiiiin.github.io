@@ -1,0 +1,7 @@
+---
+layout: post
+title: Homework2
+cover-img: /assets/img/path.jpg
+thumbnail-img: /assets/img/hw2.png
+permalink: /homework/homework2.md
+---
