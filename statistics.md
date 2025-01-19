@@ -4,10 +4,59 @@ title: Statistics
 subtitle: My homework for statistics
 ---
 
-My statistics homework
+<div class="presentation">
+  <section class="intro">
+    <h1>Welcome to my Blog</h1>
+    <p>Discover insightful articles, updates, and more. Stay informed and inspired with our curated content.</p>
+  </section>
 
-### HomeWorks
+  <section class="featured-posts">
+    <h2>Featured Posts</h2>
+    <ul class="posts-list list-unstyled" role="list">
+      {% assign posts = paginator.posts | default: site.posts %}
+      {% for post in posts limit: 3 %}
+      <li class="post-preview">
+        <article>
 
-{% for post in site.posts %}
-- [{{ post.title }}]({{ post.url }})
-{% endfor %}
+          {% if post.thumbnail-img %}
+          <div class="post-image">
+            <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
+              <img src="{{ post.thumbnail-img | absolute_url }}" alt="{{ post.title }} thumbnail">
+            </a>
+          </div>
+          {% endif %}
+
+          <a href="{{ post.url | absolute_url }}">
+            <h3 class="post-title">{{ post.title | strip_html }}</h3>
+          </a>
+
+          {% if post.subtitle %}
+          <p class="post-subtitle">{{ post.subtitle | strip_html }}</p>
+          {% endif %}
+
+          <p class="post-meta">
+            {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
+            Posted on {{ post.date | date: date_format }}
+          </p>
+
+          <div class="post-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 30 }}
+            <a href="{{ post.url | absolute_url }}" class="post-read-more">Read more</a>
+          </div>
+
+        </article>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="about">
+    <h2>About Us</h2>
+    <p>We are passionate about sharing knowledge and stories that matter. Explore a range of topics and connect with our community.</p>
+  </section>
+
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions or feedback? <a href="/contact">Reach out to us</a>, and we’d love to hear from you!</p>
+  </section>
+</div>
